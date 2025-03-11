@@ -6,7 +6,7 @@ exports.createJob = async (req, res) => {
     const job = await Job.create({ ...req.body, postedBy: req.user.id });
     res.status(201).json(job);
   } catch (error) {
-    res.status(400).json({ message: "Error creating job listing" });
+    res.status(400).json({ message: "Error creating job listing",error: error.message  });
   }
 };
 
@@ -40,3 +40,4 @@ exports.deleteJob = async (req, res) => {
   await Job.findByIdAndDelete(req.params.id);
   res.json({ message: "Job deleted successfully" });
 };
+//module.exports = { createJob };
